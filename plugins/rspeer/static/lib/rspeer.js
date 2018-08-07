@@ -18,7 +18,6 @@ $(window).on('action:ajaxify.end', function (data) {
 	}
 	var page = data.target.ajaxify.currentPage;
 	if (page === "login" || page === "register") {
-		alert('redirecting.');
 		window.location.replace(ssoUrl + "?redirect=" + window.location.origin);
 	}
 });
