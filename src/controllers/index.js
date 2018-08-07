@@ -87,12 +87,13 @@ Controllers.reset = function (req, res, next) {
 
 Controllers.login = function (req, res, next) {
 
-
+	console.log(req.query);
 	if(!req.query.overrideLogin) {
 		const auth = nconf.get('ssoPath');
 		const url = nconf.get('url');
 		return res.render("redirect", {redirectUrl : `${auth}?redirect=${url}`})
 	}
+	console.log("Overring to regular.");
 
 	var data = {};
 	var loginStrategies = require('../routes/authentication').getLoginStrategies();
