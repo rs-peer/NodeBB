@@ -13,6 +13,9 @@ function cookie(name) {
 var ssoUrl = atob(decodeURIComponent(cookie("sso_url")));
 
 $(window).on('action:ajaxify.end', function (data) {
+	if(window.cookie("overrideLogin") == "true") {
+		return;
+	}
 	var page = data.target.ajaxify.currentPage;
 	if (page === "login" || page === "register") {
 		window.location.replace(ssoUrl + "?redirect=" + window.location.origin);
