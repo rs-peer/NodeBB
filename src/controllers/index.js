@@ -87,8 +87,9 @@ Controllers.reset = function (req, res, next) {
 
 Controllers.login = function (req, res, next) {
 
+
 	if(!req.query.overrideLogin) {
-		const auth = nconf.get('rspeerAuthUrl');
+		const auth = nconf.get('ssoPath');
 		const url = nconf.get('url');
 		return res.render("redirect", {redirectUrl : `${auth}?redirect=${url}`})
 	}
@@ -145,7 +146,7 @@ Controllers.login = function (req, res, next) {
 };
 
 Controllers.register = function (req, res, next) {
-	const auth = nconf.get('rspeerAuthUrl');
+	const auth = nconf.get('ssoPath');
 	const url = nconf.get('url');
 	return res.render("redirect", {redirectUrl : `${auth}?redirect=${url}`})
 };
