@@ -1,0 +1,8 @@
+{
+  "id": "nodebb-plugin-rspeer",
+  "url": "https://rspeer.org",
+  "library": "./index.js",
+  "hooks": [
+    { "hook": "filter:uploadImage", "method": "onImageUpload" }
+  ]
+}
