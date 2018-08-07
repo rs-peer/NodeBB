@@ -21,7 +21,6 @@ LoginService.onRouteChange = async (req, res, next) => {
 	}
 	const sso = nconf.get('ssoPath');
 	res.redirect(`${sso}?redirect=${nconf.get('url')}`);
-	//next();
 };
 
 LoginService.onLoginBuild = async (data, callback) => {
@@ -41,7 +40,6 @@ LoginService.loginWithToken = async (req, token) => {
 		req.login({uid: userId}, function () {
 			Auth.onSuccessfulLogin(req, userId, (err) => {
 				if (err) res(err);
-				console.log("Logged in with: " + userId);
 				res();
 			})
 		});
