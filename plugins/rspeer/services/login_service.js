@@ -19,8 +19,11 @@ LoginService.onRouteChange = async (req, res, next) => {
 	if(req.path !== "/login") {
 		return next();
 	}
-	const sso = nconf.get('ssoPath');
-	res.redirect(`${sso}?redirect=${nconf.get('url')}`);
+	if(!req.query.overrideLogin) {
+		const sso = nconf.get('ssoPath');
+		return res.redirect(`${sso}?redirect=${nconf.get('url')}`);
+	}
+	return next();
 };
 
 LoginService.onLoginBuild = async (data, callback) => {
