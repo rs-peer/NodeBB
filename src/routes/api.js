@@ -3,6 +3,8 @@
 var express = require('express');
 
 var uploadsController = require('../controllers/uploads');
+var rspeerController = require("../controllers/rspeer");
+
 
 module.exports = function (app, middleware, controllers) {
 	var router = express.Router();
@@ -22,6 +24,8 @@ module.exports = function (app, middleware, controllers) {
 	router.get('/:type/pid/:id', controllers.api.getObject);
 	router.get('/:type/tid/:id', controllers.api.getObject);
 	router.get('/:type/cid/:id', controllers.api.getObject);
+
+	router.post('/rspeer/register', rspeerController.register);
 
 	router.get('/categories/:cid/moderators', controllers.api.getModerators);
 	router.get('/recent/posts/:term?', controllers.posts.getRecentPosts);
