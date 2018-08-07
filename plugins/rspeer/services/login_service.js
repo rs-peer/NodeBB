@@ -1,13 +1,17 @@
 const nconf = module.parent.parent.require('nconf');
 const User = module.parent.parent.require('./user');
 const Auth = module.parent.parent.require('./controllers/authentication');
+const ssoUrlBase64 = Buffer.from(nconf.get('ssoPath')).toString('base64');
+const apiUrlBase64 = Buffer.from(nconf.get('rspeerApi')).toString('base64');
+
 
 const rp = require('request-promise');
 
 const LoginService = {};
 
 LoginService.onRouteChange = async (req, res, next) => {
-	console.log(req.path);
+	req.cookie('sso_url', ssoUrlBase64);
+	req.cookie('api_url', apiUrlBase64);
 	const idToken = req.query.idToken;
 	if(idToken) {
 		await LoginService.loginWithToken(req, idToken);
