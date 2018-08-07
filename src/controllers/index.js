@@ -149,6 +149,7 @@ Controllers.login = function (req, res, next) {
 Controllers.register = function (req, res, next) {
 	const auth = nconf.get('ssoPath');
 	const url = nconf.get('url');
+	console.log("Redirecting to sso.");
 	return res.render("redirect", {redirectUrl : `${auth}?redirect=${url}`})
 };
 
