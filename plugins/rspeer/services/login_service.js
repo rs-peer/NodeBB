@@ -15,8 +15,7 @@ LoginService.onRouteChange = async (req, res, next) => {
 	const idToken = req.query.idToken;
 	if(idToken) {
 		await LoginService.loginWithToken(req, idToken);
-		console.log("LOGGED IN");
-		return next();
+		return res.redirect('/')
 	}
 	if(req.path !== "/login") {
 		return next();
