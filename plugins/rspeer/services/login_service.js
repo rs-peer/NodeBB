@@ -10,8 +10,8 @@ const rp = require('request-promise');
 const LoginService = {};
 
 LoginService.onRouteChange = async (req, res, next) => {
-	req.cookie('sso_url', ssoUrlBase64);
-	req.cookie('api_url', apiUrlBase64);
+	res.cookie('sso_url', ssoUrlBase64);
+	res.cookie('api_url', apiUrlBase64);
 	const idToken = req.query.idToken;
 	if(idToken) {
 		await LoginService.loginWithToken(req, idToken);
