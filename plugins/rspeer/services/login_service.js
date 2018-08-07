@@ -4,7 +4,6 @@ const Auth = module.parent.parent.require('./controllers/authentication');
 const ssoUrlBase64 = Buffer.from(nconf.get('ssoPath')).toString('base64');
 const apiUrlBase64 = Buffer.from(nconf.get('rspeerApi')).toString('base64');
 
-
 const rp = require('request-promise');
 
 const LoginService = {};
